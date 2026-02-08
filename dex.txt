@@ -5725,7 +5725,7 @@ local EmbeddedModules = {
 
 							if plt == "p" or plt == "m" then
 								resizer.BackgroundTransparency = 0.5
-							elseif plt == "p" or plt == "m" then then
+							elseif plt == "p" or plt == "m" then
 								local releaseEvent, mouseEvent
 
 								local offX = input.Position.X - resizer.AbsolutePosition.X
@@ -12435,3 +12435,4 @@ end)()
 
 -- Start
 Main.Init()
+
