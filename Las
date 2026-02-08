@@ -1,1 +1,2 @@
 workspace:FindFirstChild("1916 Firecar By B3ta", true).Parent:Destroy()
+workspace:WaitForChild("Mini Titanic"):Destroy()
