@@ -22,7 +22,6 @@ local sn = false
 game:GetService("ReplicatedStorage"):WaitForChild("Sound5Started").Event:Once(function()
     sn = true
 end)
-print("eventtttttt")
 
 -- the start
 local function str(prn)
