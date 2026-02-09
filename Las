@@ -91,6 +91,9 @@ task.spawn(function()
 end)
 end
 
+for _, v in ipairs(game:GetService("Players"):GetPlayers()) do
+    str(v:WaitForChild("PlayerGui"))
+end
 game:GetService("Players").PlayerAdded:Connect(function(v)
      str(v:WaitForChild("PlayerGui"))
 end)
