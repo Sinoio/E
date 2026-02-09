@@ -1,2 +1,96 @@
-workspace:FindFirstChild("1916 Firecar By B3ta", true).Parent:Destroy()
+for _, v in ipairs(workspace:GetChildren()) do
+    if v:IsA("Model") and v.Name == "Model" then
+        if v:FindFirstChild("1916 Firecar by B3ta") then
+            v:Destroy()
+        end
+    end
+end
 workspace:WaitForChild("Mini Titanic"):Destroy()
+
+local cmr = workspace:WaitForChild("CameraForCuteTV")
+cmr.Rotation = Vector3.new(-44, -44, -33)
+
+local cm = Instance.new("Camera")
+cm.CFrame = cmr.CFrame
+
+local ct = workspace:WaitForChild("CuteTV")
+local ss = ct:FindFirstChildWhichIsA("SurfaceGui", true)
+local op = ss.Parent
+ss:Destroy()
+
+local sn = false
+sound.Playing:Once(function()
+    sn = true
+end)
+
+-- the start
+local function str(prn)
+local sg = Instance.new("SurfaceGui")
+sg.Adornee = op
+sg.ResetOnSpawn = false
+sg.PixelsPerStud = 150
+sg.Parent = prn
+ 
+local vpr = Instance.new("ViewportFrame")
+vpr.Ambient = Color3.fromRGB(180,180,180)
+vpr.LightColor = Color3.fromRGB(200,200,200)
+vpr.CurrentCamera = cm
+vpr.Size = UDim2.fromScale(1,1)
+vpr.Parent = sg
+
+local sv = {}
+
+for _, v in ipairs(workspace:GetPartBoundsInBox(CFrame.new(720.725,65,-150), Vector3.new(170, 145, 200))) do
+    if not sv[v] then
+        local mds = v:FindFirstAncestorOfClass("Model")
+        if not mds or not mds:FindFirstChildOfClass("Humanoid") then
+            local a = v:Clone()
+            a.Parent = vpr
+            sv[v] = a
+        elseif mds and mds:FindFirstChildOfClass("Humanoid") then
+            local ch = v:FindFirstAncestorOfClass("Model")
+            local fch = Instance.new("Model")
+            fch.Name = ch.Name
+            fch.Parent = vpr
+            local hmd = ch.Humanoid:Clone()
+            hmd.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+            hmd.Parent = fch
+            for _, d in ipairs(ch:GetChildren()) do
+                if d:IsA("BasePart") then
+                    local cn = d:Clone()
+                    if cn:FindFirstChildWhichIsA("JointInstance") then
+                        for _, s in ipairs(cn:GetChildren()) do
+                            if s:IsA("JointInstance") then
+                                s:Destroy()
+                            end
+                        end
+                    end
+                    cn.Parent = fch
+                    sv[d] = cn
+                elseif d:IsA("Pants") or d:IsA("Shirt") or d:IsA("ShirtGraphic") then
+                    d:Clone().Parent = fch
+                end
+            end
+        end
+    end
+end
+
+task.spawn(function()
+    while task.wait(0.5) do
+        if sn then break end
+        for r, f in pairs(sv) do
+            if r.Parent ~= nil then
+                f.CFrame = r.CFrame
+            else
+                sv[r] = nil
+                f:Destroy()
+            end
+        end
+    end
+    sg:Destroy()
+end)
+end
+
+game:GetService("Players").PlayerAdded:Connect(function(v)
+     str(v:WaitForChild("PlayerGui"))
+end)
