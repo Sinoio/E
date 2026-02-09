@@ -19,9 +19,13 @@ local op = ss.Parent
 ss:Destroy()
 
 local sn = false
-workspace.PUMPS["Pump Destruction"].DestroyedPump.Sound2.Played:Once(function()
-    sn = true
-end)
+for _, v in ipairs(game:GetService("SoundService"):GetChildren()) do
+    if v:IsA("Sound") and v.SoundId == "rbxassetid://137899629942493" then
+        v.Played:Once(function()
+            sn = true
+        end)
+    end
+end
 
 -- the start
 local function str(prn)
