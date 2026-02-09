@@ -19,7 +19,7 @@ local op = ss.Parent
 ss:Destroy()
 
 local sn = false
-sound.Playing:Once(function()
+workspace.PUMPS["Pump Destruction"].DestroyedPump.Sound2.Played:Once(function()
     sn = true
 end)
 
@@ -77,7 +77,7 @@ end
 
 task.spawn(function()
     while task.wait(0.5) do
-        if sn then break end
+        if sn then table.clear(sv) break end
         for r, f in pairs(sv) do
             if r.Parent ~= nil then
                 f.CFrame = r.CFrame
