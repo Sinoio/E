@@ -1,1 +1,4 @@
-
+local ic = require(game:GetService("ReplicatedStorage"):WaitForChild("TopbarPlus"):WaitForChild("Icon"))
+local mc = ic.new()
+mc:setLabel("speech-bubble-align-center")
+mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
