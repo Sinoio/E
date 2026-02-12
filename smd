@@ -1,4 +1,9 @@
-local ic = require(game:GetService("ReplicatedStorage"):WaitForChild("TopbarPlus"):WaitForChild("Icon"))
+local rm = game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent")
+game.Players.PlayerAdded:Connect(function(p)
+rm:FireClient(p, 
+[[local ic = require(game:GetService("ReplicatedStorage"):WaitForChild("TopbarPlus"):WaitForChild("Icon"))
 local mc = ic.new()
 mc:setLabel("speech-bubble-align-center")
-mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)]]
+)
+end)
