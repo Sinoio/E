@@ -3,28 +3,30 @@ game.Players.PlayerAdded:Connect(function(p)
 rm:FireClient(p, 
 [[
 
--- LocalScript (StarterPlayerScripts)
 local StarterGui = game:GetService("StarterGui")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
-local myCustomChatGui = playerGui:WaitForChild("MyCustomChatGui") -- replace
 
--- create bindable that the Core topbar will fire
+local sg = Instance.new("ScreenGui")
+local fr = Instance.new("Frame")
+fr.Position = UDim2.fromScale(0.5, 0.5)
+fr.Size = UDim2.fromScale(0.2, 0.2)
+sg.Parent = playerGui
+fr.Parent = sg
+
 local toggleEvent = Instance.new("BindableEvent")
 toggleEvent.Name = "ToggleVisibility"
-toggleEvent.Parent = script
+toggleEvent.Parent = game:GetService("ReplicatedStorage")
 
 StarterGui:SetCore("CoreGuiChatConnections", {
     ChatWindow = {
-        ToggleVisibility = toggleEvent; -- intercepts topbar toggle
+        ToggleVisibility = toggleEvent;
     };
 })
 
 toggleEvent.Event:Connect(function(visible)
-    -- show/hide your TopbarPlus chat GUI instead of letting core handle it
-    myCustomChatGui.Enabled = visible
-    -- try to force the core "active" state off (may be unreliable on some engine versions)
+    sg.Enabled = visible
     pcall(function() StarterGui:SetCore("ChatActive", false) end)
 end)
 
