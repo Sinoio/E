@@ -9,6 +9,8 @@ mc:setLabel("speech-bubble-align-center")
 mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal, "Selected")
 mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, "Deselected")
 mc:setName("chat")
+mc:setTextColor(Color3.fromRGB(247, 247, 248))
+mc:setTextSize(24)
 
 ]])
 end)
