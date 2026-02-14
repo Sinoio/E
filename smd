@@ -3,7 +3,7 @@ game.Players.PlayerAdded:Connect(function(p)
 rm:FireClient(p, 
 [[
 
-game:GetService("TextChatService").ChatWindowConfiguration.Enable = false
+game:GetService("TextChatService").ChatWindowConfiguration.Enabled = false
 game:GetService("TextChatService").ChatInputBarConfiguration.Enabled = false
 
 local sg = Instance.new("ScreenGui")
