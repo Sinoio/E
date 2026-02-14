@@ -3,6 +3,8 @@ game.Players.PlayerAdded:Connect(function(p)
 rm:FireClient(p, 
 [[
 
+task.wait(1)
+
 game:GetService("TextChatService").ChatWindowConfiguration.Enabled = false
 game:GetService("TextChatService").ChatInputBarConfiguration.Enabled = false
 
