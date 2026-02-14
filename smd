@@ -3,32 +3,14 @@ game.Players.PlayerAdded:Connect(function(p)
 rm:FireClient(p, 
 [[
 
-local StarterGui = game:GetService("StarterGui")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-
-local sg = Instance.new("ScreenGui")
-local fr = Instance.new("Frame")
-fr.Position = UDim2.fromScale(0.5, 0.5)
-fr.Size = UDim2.fromScale(0.2, 0.2)
-sg.Parent = playerGui
-fr.Parent = sg
-
-local toggleEvent = Instance.new("BindableEvent")
-toggleEvent.Name = "ToggleVisibility"
-toggleEvent.Parent = game:GetService("ReplicatedStorage")
-
-StarterGui:SetCore("CoreGuiChatConnections", {
-    ChatWindow = {
-        ToggleVisibility = toggleEvent;
-    };
-})
-
-toggleEvent.Event:Connect(function(visible)
-    sg.Enabled = visible
-    pcall(function() StarterGui:SetCore("ChatActive", false) end)
-end)
+local ic = require(game:GetService("ReplicatedStorage"):WaitForChild("Icon"))
+local mc = ic.new()
+mc:setLabel("speech-bubble-align-center")
+mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal, "Selected")
+mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, "Deselected")
+mc:setName("chat")
+mc:setTextColor(Color3.fromRGB(247, 247, 248))
+mc:setTextSize(24)
 
 ]])
 end)
