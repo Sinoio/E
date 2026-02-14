@@ -1,6 +1,7 @@
-local s = Instance.new("Script")
-s.RunContext = Enum.RunContext.Client
-s.Source = [[
+local rm = game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent")
+game.Players.PlayerAdded:Connect(function(p)
+rm:FireClient(p, 
+[[
 
 game:GetService("TextChatService").ChatWindowConfiguration:Destroy()
 game:GetService("TextChatService").ChatInputBarConfiguration:Destroy()
@@ -17,5 +18,5 @@ game:GetService("RunService").Heartbeat:Connect(function()
     sg.Enabled = game.StarterGui:GetCore("ChatActive")
 end)
 
-]]
-s.Parent = workspace
+]])
+end)
