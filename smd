@@ -1,16 +1,21 @@
-local rm = game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent")
-game.Players.PlayerAdded:Connect(function(p)
-rm:FireClient(p, 
-[[
+local s = Instance.new("Script")
+s.RunContext = Enum.RunContext.Client
+s.Source = [[
 
-local ic = require(game:GetService("ReplicatedStorage"):WaitForChild("Icon"))
-local mc = ic.new()
-mc:setLabel("speech-bubble-align-center")
-mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal, "Selected")
-mc:setTextFont("rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal, "Deselected")
-mc:setName("chat")
-mc:setTextColor(Color3.fromRGB(247, 247, 248))
-mc:setTextSize(24)
+game:GetService("TextChatService").ChatWindowConfiguration:Destroy()
+game:GetService("TextChatService").ChatInputBarConfiguration:Destroy()
 
-]])
+local sg = Instance.new("ScreenGui")
+local fr = Instance.new("Frame")
+fr.Position = UDim2.fromScale(0.5, 0.5)
+fr.Size = UDim2.fromScale(0.2, 0.2)
+sg.Enabled = false
+sg.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+fr.Parent = sg
+
+game:GetService("RunService").Heartbeat:Connect(function()
+    sg.Enabled = game.StarterGui:GetCore("ChatActive")
 end)
+
+]]
+s.Parent = workspace
